@@ -150,6 +150,9 @@ function getIgnoredGlobs(repoRoot: string) {
   const ig = ignore();
   try {
     ig.add(readFileSync(`${repoRoot}/.gitignore`, 'utf-8'));
+    // according to docs it should be ignored too
+    // https://nx.dev/reference/nxignore#.nxignore
+    ig.add(readFileSync(`${repoRoot}/.nxignore`, 'utf-8'));
   } catch {}
   return ig;
 }
